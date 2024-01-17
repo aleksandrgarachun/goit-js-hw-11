@@ -11,7 +11,6 @@ const loader = document.querySelector(".loader");
 
 searchForm.addEventListener("submit", handleSearch);
 
-// Ініціалізуємо SimpleLightbox
 const lightbox = new SimpleLightbox(".card-container a", {
   captionsData: "alt",
   captionDelay: 250,
@@ -23,7 +22,6 @@ function handleSearch(event) {
     const form = event.currentTarget;
     const query = form.elements.query.value;
   
-    // Перевірка, чи не порожнє значення поля вводу
     if(!query.trim()) {
         return;
     }
@@ -77,10 +75,10 @@ function renderPhotos(data) {
                 height="200"
                 />
                 <ul class="gallery-item-description">
-                    <li>Likes: ${likes}</li>
-                    <li>Views: ${views}</li>
-                    <li>Downloads: ${downloads}</li>
-                    <li>Comments: ${comments}</li>
+                    <li class="comments" >Likes: ${likes}</li>
+                    <li class="comments" >Views: ${views}</li>
+                    <li class="comments" >Downloads: ${downloads}</li>
+                    <li class="comments" >Comments: ${comments}</li>
                 </ul>
             </a>
         </li>
@@ -94,7 +92,8 @@ function renderPhotos(data) {
 
 function onFetchError(error) {
   iziToast.show({
-    title: "Error",
+    ...iziToastConfig,
+    backgroundColor: '#EF4040',
     message: "Sorry, there are no images matching your search query. Please try again!",
   });
 }
@@ -104,17 +103,18 @@ function clearGallery() {
 }
 
 function showLoader() {
-  loader.classList.add("visible"); // Додати клас, який зробить індикатор видимим
+  loader.classList.add("visible"); 
 }
 
 function hideLoader() {
-  loader.classList.remove("visible"); // Видалити клас, який робить індикатор видимим
+  loader.classList.remove("visible"); 
 }
 
 
-
-
-
-
-
+const iziToastConfig = {
+    position: 'topRight',
+    messageColor: '#FFF',
+    messageSize: "16px",
+    close: false,
+}
 
