@@ -29,7 +29,6 @@ function handleSearch(event) {
     clearGallery()
     showLoader();
   
-    setTimeout(() => {
       fetchPhotos(query)
         .then(renderPhotos)
         .catch(onFetchError)
@@ -37,7 +36,6 @@ function handleSearch(event) {
           form.reset();
           hideLoader();
         });
-    }, 500);
   }
 
 function fetchPhotos(query) {
